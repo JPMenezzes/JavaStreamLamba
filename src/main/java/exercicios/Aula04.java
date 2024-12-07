@@ -48,29 +48,53 @@ public class Aula04 extends Aula {
     }
 
     protected double maiorNotaCursoAndSexo(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso, final char sexo) {
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        double maiorNota = stream
+                .filter(estudante -> estudante.getCurso() == curso)
+                .filter(estudante -> estudante.getSexo() == sexo)
+                .mapToDouble(Estudante::getNota)
+                .max()
+                .orElseThrow(() -> new RuntimeException("Algo de errado aconteceu no stream!"));
+
+        return maiorNota;
     }
 
     protected long totalEstudantesCursoAndSexo(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso, final char sexo) {
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        long totalEstudantes = stream
+                .filter(estudante -> estudante.getCurso() == curso)
+                .filter(estudante -> estudante.getSexo() == sexo)
+                .count();
+
+        return totalEstudantes;
     }
 
-    protected double mediaNotaTodosEstudantesCurso(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+    protected double mediaNotaTodosEstudantesCurso(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso) {
+        double mediaNota = stream
+                .filter(estudante -> estudante.getCurso() == curso)
+                .mapToDouble(Estudante::getNota)
+                .average()
+                .orElseThrow(() -> new RuntimeException("Algo de errado aconteceu no stream!"));
+
+        return mediaNota;
     }
 
-    protected double maiorNotaTodosEstudantes(@NonNull final Stream<Estudante> stream){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+    protected double maiorNotaTodosEstudantes(@NonNull final Stream<Estudante> stream) {
+        double maiorNota = stream
+                .mapToDouble(Estudante::getNota)
+                .max()
+                .orElseThrow(() -> new RuntimeException("Algo de errado aconteceu no stream!"));
+
+        return maiorNota;
     }
 
 
-    protected double maiorNotaHomens(@NonNull final Stream<Estudante> stream){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+    protected double maiorNotaHomens(@NonNull final Stream<Estudante> stream) {
+        double maiorNotaHomens = stream
+                .filter(estudante -> estudante.getSexo() == 'M')
+                .mapToDouble(Estudante::getNota)
+                .max()
+                .orElseThrow(() -> new RuntimeException("Algo de errado aconteceu no stream!"));
+
+        return maiorNotaHomens;
     }
 }
 
